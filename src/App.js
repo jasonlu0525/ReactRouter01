@@ -4,7 +4,10 @@ import {
   NavLink,
   Routes,
   Route,
-  useNavigate
+  useNavigate,
+  Outlet,
+  useParams,
+  useRoutes
 } from 'react-router-dom';
 
 //  Day 14 每日任務
@@ -30,7 +33,28 @@ const Register = () => {
   return <p>這是註冊頁面</p>;
 };
 
+
+const Post = () => {
+  return (
+    <>
+      <h2> post 頁面</h2>
+      <Outlet />
+    </>
+  )
+}
+
+const PostId = () => {
+  const { id } = useParams();
+  console.log(id);
+  return (
+    <>
+      PostId : {id}
+    </>
+  )
+}
+
 function App() {
+  
   return (
     <div className="container">
       <HashRouter>
@@ -47,6 +71,12 @@ function App() {
           <NavLink to="/todo">
             <p>Todo 頁面</p>
           </NavLink>
+          <NavLink to="/post">
+            <p>Post  頁面</p>
+          </NavLink>
+          <NavLink to="/post/123">
+            <p>Post  詳細頁面</p>
+          </NavLink>
         </div>
         {/* Routes, Route 練習區 */}
         {/* Day 13 每日任務 */}
@@ -54,6 +84,9 @@ function App() {
           <Route path="Todo" element={<Todo />}></Route>
           <Route path="Login" element={<Login />}></Route>
           <Route path="Register" element={<Register />}></Route>
+          <Route path="post" element={<Post />}>
+            <Route path=":id"  element={<PostId /> } ></Route>
+          </Route>
           {/* <Route path="*" element={ <h1> 404 </h1>}></Route> */}
         </Routes>
         {/* 練習區 */}
@@ -61,5 +94,4 @@ function App() {
     </div>
   );
 }
-
 export default App;
