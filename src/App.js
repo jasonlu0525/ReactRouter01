@@ -3,13 +3,25 @@ import {
   HashRouter,
   NavLink,
   Routes,
-  Route
+  Route,
+  useNavigate
 } from 'react-router-dom';
 
+//  Day 14 每日任務
+const Logout = () => {
+  const navigate = useNavigate();
+  return <button type='button' onClick={() => navigate('/login')}>登出</button>
+}
 
 const Todo = () => {
-  return <p>這是 Todo 頁面
-  </p>;
+  return (
+    <>
+      <p>這是 Todo 頁面
+      </p>
+      <Logout />
+    </>
+  )
+    ;
 };
 const Login = () => {
   return <p>這是登入頁面</p>;
@@ -37,7 +49,7 @@ function App() {
           </NavLink>
         </div>
         {/* Routes, Route 練習區 */}
-
+        {/* Day 13 每日任務 */}
         <Routes>
           <Route path="Todo" element={<Todo />}></Route>
           <Route path="Login" element={<Login />}></Route>
